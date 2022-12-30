@@ -1,0 +1,13 @@
+network:
+    ethernets:
+        enp0s3:
+            dhcp4: true
+            dhcp4-overrides:
+              use-dns: false
+            nameservers:
+              addresses: [127.0.0.1]
+              search: [local]
+            match:
+                macaddress: 02:33:bd:d8:13:cd
+            set-name: enp0s3
+    version: 2
