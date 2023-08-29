@@ -1,0 +1,11 @@
+[Unit]
+Description=Loop device
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/losetup /dev/loop3 /root/disk1
+ExecStart=/sbin/partprobe /dev/loop3
+
+[Install]
+WantedBy=multi-user.target

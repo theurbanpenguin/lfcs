@@ -1,0 +1,6 @@
+[Unit]
+Description=Touch File Service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/touch /tmp/touched_file

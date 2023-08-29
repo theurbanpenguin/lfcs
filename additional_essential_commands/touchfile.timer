@@ -1,0 +1,10 @@
+[Unit]
+Description=Touch File Timer
+
+[Timer]
+OnBootSec=60s
+OnUnitActiveSec=600s
+RandomizedDelaySec=300s
+
+[Install]
+WantedBy=timers.target

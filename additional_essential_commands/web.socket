@@ -1,0 +1,6 @@
+[Unit]
+Description=Python HTTP Server Socket
+[Socket]
+ListenStream=8080
+[Install]
+WantedBy=sockets.target
