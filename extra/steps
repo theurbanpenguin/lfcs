@@ -1,0 +1,19 @@
+sudo -i
+hostnamectl set-hostname ubuntu1.example.com
+vim /etc/netplan/required files
+netplan apply
+systemd-resolve --status #make sure dns points to AD
+apt update
+apt install sssd-ad sssd-tools realmd adcli
+realm -v discover example.com
+cat > /etc/krb5.conf <<EOF
+[libdefaults]
+    default_realm = EXAMPLE.COM
+    rdns = false
+EOF
+realm join EXAMPLE.COM
+vim /etc/sssd.conf
+sudo systemctl restart sssd
+getent passwd fred@example.com
+pam-auth-update --enable mkhomedir
+adcli info

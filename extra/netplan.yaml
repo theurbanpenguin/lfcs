@@ -1,0 +1,20 @@
+network:
+    ethernets:
+        enp0s3:
+            dhcp4: true
+            dhcp4-overrides:
+              use-dns: no
+            match:
+                macaddress: 02:72:ee:e2:ed:ce
+            set-name: enp0s3
+    version: 2
+---
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s8:
+      addresses:
+      - 192.168.56.101/24
+      nameservers:
+        addresses: [192.168.56.254]
