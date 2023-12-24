@@ -1,0 +1,9 @@
+# /etc/systemd/system/data-mount.mount
+[Unit]
+Description=My Mount
+
+[Mount]
+What=/dev/loop0p1
+Where=/data/mount
+Type=xfs
+Options=defaults

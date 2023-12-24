@@ -1,0 +1,7 @@
+# /etc/systemd/system/data-mount.automount
+[Unit]
+Description=Automount My Mount
+
+[Automount]
+Where=/data/mount
+TimeoutIdleSec="10 min"
