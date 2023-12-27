@@ -1,0 +1,12 @@
+# /etc/systemd/system/fortune.socket
+[Socket]
+# Listen on TCP port 17
+# Use ListenDatagram to listen on UDP
+ListenStream = 17
+
+# Call accept(3) on the socket before handing it to the process
+# This is necessary because fortune knows nothing about the network
+Accept=yes
+
+[Install]
+WantedBy = sockets.target

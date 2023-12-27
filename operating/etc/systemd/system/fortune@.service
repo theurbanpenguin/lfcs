@@ -1,0 +1,21 @@
+[Unit]
+Description=QoTD
+
+[Service]
+# Note the - to make systemd ignore the exit code
+ExecStart=-/usr/bin/fortune
+
+# This is the part that makes it work like inetd
+StandardOutput=socket
+
+# Run as a dynamic user
+DynamicUser=yes
+
+# ProtectSystem=strict # Implied by DynamicUser=yes
+# PrivateTmp=true # Also implied by DynamicUser=yes
+
+# DynamicUser implies ProtectHome=read-only, but we do not need home directories
+ProtectHome=true
+
+# We also do not need to see users
+PrivateUsers=true

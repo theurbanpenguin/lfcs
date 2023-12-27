@@ -5,3 +5,6 @@ Description=Automount My Mount
 [Automount]
 Where=/data/mount
 TimeoutIdleSec="10 min"
+
+[Install]
+WantedBy=multi-user.target
