@@ -1,7 +1,6 @@
 Which TCP port does the SSH (Secure SHell) service listen on normally?
 %
 Which file usually holds local user passwords in Linux:
-
 A) /etc/passwd
 B) /etc/hosts
 C) /etc/shadow
