@@ -1,0 +1,11 @@
+# /etc/systemd/system/bin.path
+[Unit]
+Description=Monitor ~/bin directory for new files
+
+[Path]
+PathModified=/home/vagrant/bin
+MakeDirectory=true
+TriggerLimitBurst=0
+
+[Install]
+WantedBy=multi-user.target

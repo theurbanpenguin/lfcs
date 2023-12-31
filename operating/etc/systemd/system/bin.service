@@ -1,0 +1,7 @@
+# /etc/systemd/system/bin.service
+[Unit]
+Description=Set execute permissions for new files in ~/bin directory
+
+[Service]
+Type=oneshot
+ExecStart=/home/vagrant/bin/setexec.sh
