@@ -1,0 +1,19 @@
+# Place in directory you run Vagrant from, alongside the Vagrantfile
+- name: Install Extra packages
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Install XFCE4 Desktop Environemnt packages
+      apt:
+        pkg: 
+          - xfce4
+          - xfce4-goodies
+        state: latest 
+        update_cache: true
+
+    - name: Install TightVNCServer
+      apt:
+        name: tightvncserver
+        state: latest
+        update_cache: true
