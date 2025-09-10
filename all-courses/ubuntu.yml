@@ -3,18 +3,44 @@
   hosts: all
   become: true
   gather_facts: false
+
+  vars: 
+    sshd_config_file: /etc/ssh/sshd_config
+    cloud_init_override_file: /etc/cloud/cloud.cfg.d/99-disable-ssh-password.cfg
+
   tasks:
     - name: Update Package Cache and Upgrade Existing Packages
       apt:
         update_cache: true
         upgrade: true
 
+    - name: Disable cloud-init SSH password override
+      copy: 
+        dest: "{{ cloud_init_override_file }}"
+        content: |
+          ssh_deletekeys: false
+          disable_root: false
+          ssh_pwauth: true
+        owner: root
+        group: root
+        mode: '0644'
+      register: cloudinit_override_changed
+      
+    - name: Re-run cloud-init to apply SSH password override
+      block: 
+        - name: Clean cloud-init state
+          command: cloud-init clean
+        - name: Init the init. 
+          command: cloud-init init
+      when: cloudinit_override_changed.changed
+
     - name: Ensure SSH Allows Password Authentication
       lineinfile:
-        path: /etc/ssh/sshd_config
+        path: "{{ sshd_config_file }}"
         line: PasswordAuthentication yes
-        regexp: '^PasswordAuthentication .*$'
+        regexp: '^#?PasswordAuthentication .*$'
       notify: RestartSSH
+
   handlers:
     - name: RestartSSH
       service:
